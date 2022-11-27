@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// user
+Route::get('edit/profile',[HomeController::class,"edit_profile"])->name('edit.profile');
+
+//user update
+Route::post('update/profile',[HomeController::class,"update_profile"])->name('update_profile');
+Route::post('update/picture',[HomeController::class,"update_picture"])->name('update_picture');

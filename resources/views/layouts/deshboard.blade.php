@@ -581,8 +581,8 @@ License: You must have a valid license purchased only from above link or https:/
 										<img src="https://via.placeholder.com/80x80" alt="">
 									</div>
 									<div class="info text-center">
-										<p class="name font-weight-bold mb-0">Amiah Burton</p>
-										<p class="email text-muted mb-3">amiahburton@gmail.com</p>
+										<p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
+										<p class="email text-muted mb-3">{{ Auth::user()->email}}</p>
 									</div>
 								</div>
 								<div class="dropdown-body">
@@ -594,7 +594,7 @@ License: You must have a valid license purchased only from above link or https:/
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
+											<a href="{{ route('edit.profile') }}" class="nav-link">
 												<i data-feather="edit"></i>
 												<span>Edit Profile</span>
 											</a>
@@ -606,7 +606,7 @@ License: You must have a valid license purchased only from above link or https:/
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="javascript:;" class="nav-link">
+											<a href="#" class="nav-link">
 												<i data-feather="log-out"></i>
 												<span>Log Out</span>
 											</a>
@@ -621,13 +621,12 @@ License: You must have a valid license purchased only from above link or https:/
 			<!-- partial -->
 
 			<div class="page-content">
+                @yield('contain')
 
-        <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
-
-
-        </div>
+                <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
 
 
+                </div>
 
 
 
