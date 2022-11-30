@@ -22,8 +22,26 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // user
+
+
+Route::get('/user_list',[HomeController::class,"user_list"]);
+
 Route::get('edit/profile',[HomeController::class,"edit_profile"])->name('edit.profile');
 
 //user update
 Route::post('update/profile',[HomeController::class,"update_profile"])->name('update_profile');
 Route::post('update/picture',[HomeController::class,"update_picture"])->name('update_picture');
+
+
+//catagory
+
+Route::get('addcatagory',[HomeController::class,"addcatagory"]);
+Route::get('catagory/show',[HomeController::class,"show_catagory"])->name('show_catagory');
+
+Route::post('catagory/store',[HomeController::class,"catagory_store"])->name('store');
+//delete catagory
+Route::get('delete_catagory/{id}',[HomeController::class,"delete_catagory"])->name('delete_catagory');
+//catagory edit
+Route::get('edit_catagory/{id}',[HomeController::class,"edit_catagory"])->name('edit_catagory');
+//update catagory
+Route::post('catagory/update',[HomeController::class,"update_catagory"])->name('update_catagory');

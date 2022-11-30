@@ -48,25 +48,25 @@ License: You must have a valid license purchased only from above link or https:/
         <ul class="nav">
           <li class="nav-item nav-category">Main</li>
           <li class="nav-item">
-            <a href="dashboard-one.html" class="nav-link">
+            <a href="{{ url('/user_list') }}" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
-              <span class="link-title">Dashboard</span>
+              <span class="link-title">User</span>
             </a>
           </li>
-          <li class="nav-item nav-category">web apps</li>
+
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#emails" role="button" aria-expanded="false" aria-controls="emails">
               <i class="link-icon" data-feather="mail"></i>
-              <span class="link-title">Email</span>
+              <span class="link-title">Catagory</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="emails">
               <ul class="nav sub-menu">
                 <li class="nav-item">
-                  <a href="pages/email/inbox.html" class="nav-link">Inbox</a>
+                  <a href="{{ url('addcatagory') }}" class="nav-link">Add catarory</a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/email/read.html" class="nav-link">Read</a>
+                  <a href="{{ route('show_catagory') }}" class="nav-link">Show catagory</a>
                 </li>
                 <li class="nav-item">
                   <a href="pages/email/compose.html" class="nav-link">Compose</a>
@@ -573,12 +573,21 @@ License: You must have a valid license purchased only from above link or https:/
 						</li>
 						<li class="nav-item dropdown nav-profile">
 							<a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								<img src="https://via.placeholder.com/30x30" alt="profile">
+
+                                @if(Auth::user()->image==null)
+                                <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
+                                @else
+								<img src="{{ asset('uploads/user') }}/{{ Auth::user()->image }}" alt="profile">
+                                @endif
 							</a>
 							<div class="dropdown-menu" aria-labelledby="profileDropdown">
 								<div class="dropdown-header d-flex flex-column align-items-center">
 									<div class="figure mb-3">
-										<img src="https://via.placeholder.com/80x80" alt="">
+                                        @if(Auth::user()->image==null)
+                                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" />
+                                        @else
+                                        <img src="{{ asset('uploads/user') }}/{{ Auth::user()->image }}" alt="profile">
+                                        @endif
 									</div>
 									<div class="info text-center">
 										<p class="name font-weight-bold mb-0">{{ Auth::user()->name }}</p>
@@ -606,10 +615,16 @@ License: You must have a valid license purchased only from above link or https:/
 											</a>
 										</li>
 										<li class="nav-item">
-											<a href="#" class="nav-link">
+											<a href="{{ route('logout') }}" class="nav-link"
+                                              onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+
 												<i data-feather="log-out"></i>
 												<span>Log Out</span>
 											</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                                @csrf
+                                            </form>
 										</li>
 									</ul>
 								</div>
