@@ -69,7 +69,7 @@ License: You must have a valid license purchased only from above link or https:/
                   <a href="{{ route('show_catagory') }}" class="nav-link">Show catagory</a>
                 </li>
                 <li class="nav-item">
-                  <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                  <a href="{{ route('tag') }}" class="nav-link">tag</a>
                 </li>
               </ul>
             </div>

@@ -45,3 +45,5 @@ Route::get('delete_catagory/{id}',[HomeController::class,"delete_catagory"])->na
 Route::get('edit_catagory/{id}',[HomeController::class,"edit_catagory"])->name('edit_catagory');
 //update catagory
 Route::post('catagory/update',[HomeController::class,"update_catagory"])->name('update_catagory');
+Route::get('tag',[HomeController::class,"tag"])->name('tag');
+Route::post('tag/store',[HomeController::class,"tag_store"])->name('tag_store');

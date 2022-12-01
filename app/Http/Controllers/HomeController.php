@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\catagory;
+use App\Models\tag;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
@@ -174,12 +175,29 @@ public function addcatagory(){
                     'catagory_name'=>$request->cata_name,
                     'catagory_image'=> $file_name,
                 ]);
+          }
 
 
 
 
+                function tag(){
+                    $user = tag::all();
+
+                    return view('admin.tag',['user'=>$user]);
+                }
 
 
-    }
+                function tag_store(Request $request){
+
+                  tag::insert([
+                    'tag_name'=>$request->tag_name,
+                  ]);
+
+                  return back()->with('tas','tag submit succesfully');
+                }
+
 
 }
+
+
+
