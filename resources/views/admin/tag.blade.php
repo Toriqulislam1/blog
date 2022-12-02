@@ -55,7 +55,7 @@
                         <tr>
                             <td>{{ $sl+1 }}</td>
                             <td>{{ $user->tag_name }}</td>
-                            <td>delete</td>
+                            <td> <a href="{{ route('delete_tag', $user->id) }}">delete</a> </td>
                         </tr>
                         @endforeach
                     </tbody>

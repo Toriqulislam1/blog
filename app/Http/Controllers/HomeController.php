@@ -178,8 +178,6 @@ public function addcatagory(){
           }
 
 
-
-
                 function tag(){
                     $user = tag::all();
 
@@ -195,6 +193,19 @@ public function addcatagory(){
 
                   return back()->with('tas','tag submit succesfully');
                 }
+
+                function delete_tag($id){
+                    tag::find($id)->delete();
+                    return back();
+
+                }
+                function role (){
+
+
+                  return  view('role.role');
+                }
+
+
 
 
 }
