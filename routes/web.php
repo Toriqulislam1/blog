@@ -51,3 +51,5 @@ Route::post('tag/store',[HomeController::class,"tag_store"])->name('tag_store');
 Route::get('tag/delete {id}',[HomeController::class,"delete_tag"])->name('delete_tag');
 //role
 Route::get('/role',[HomeController::class,"role"])->name('role');
+Route::post('/add/permission',[HomeController::class,"permission"])->name('permission');
+Route::post('/add/role',[HomeController::class,"role_store"])->name('role_store');

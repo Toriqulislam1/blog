@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Spatie\Permission\Models\Role;
 use App\Models\catagory;
 use App\Models\tag;
 use Illuminate\Http\Request;
@@ -9,6 +9,7 @@ use App\Models\User;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Spatie\Permission\Models\Permission;
 class HomeController extends Controller
 {
     /**
@@ -199,13 +200,31 @@ public function addcatagory(){
                     return back();
 
                 }
+                //role
                 function role (){
+               $permission = permission::all();
+               $role = role::all();
 
-
-                  return  view('role.role');
+                  return  view('role.role',[
+                   'permision'=>$permission,
+                   'role'=>$role,
+                  ]);
                 }
 
+                function permission (Request $request){
 
+                    Permission::create(['name' => $request->permission_name]);
+
+                  return back();
+                }
+
+                function role_store(Request $request){
+                    $role = Role::create(['name' => $request->role_name]);
+
+                    $role->givePermissionTo($request->perm);
+                    return back();
+
+                }
 
 
 }
