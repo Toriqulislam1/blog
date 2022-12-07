@@ -35,13 +35,36 @@ class HomeController extends Controller
 
 
 public function user_list(){
-   $user = user::all();
+   $user = user::where('id', '!=', Auth::user()->id )->orderBy('name','ASC')->get();
+   $total = User::count();
 
-   return view('admin.userlist',['user'=>$user]);
+   return view('admin.userlist',[
+    'user'=>$user,
+    'total'=>$total,
+]);
 }
 
+//delete user
+public function user_delete($user_delete){
+
+    User::find($user_delete)->delete();
+
+    return back()->withuserdelete('user delete successfully');
 
 
+}
+
+// check all delete
+function check_delete(Request $request){
+
+    foreach($request->check as $check_user){
+    User::find($check_user)->delete();
+
+    return back();
+
+}
+
+}
 
 
 
@@ -131,7 +154,7 @@ public function addcatagory(){
         [
             'catagory_image' =>$file_name,
         ]);
-        return back();
+        return back()->with('addcatagory', 'catagory add successfully');
   }
  //show catagory
   function show_catagory(){
@@ -202,12 +225,16 @@ public function addcatagory(){
                 }
                 //role
                 function role (){
-               $permission = permission::all();
+               $permi = permission::all();
+
                $role = role::all();
 
+               $user = user::all();
+
                   return  view('role.role',[
-                   'permision'=>$permission,
-                   'role'=>$role,
+                   'permi'=>$permi,
+                   'aa'=>$role,
+                   'user'=>$user,
                   ]);
                 }
 

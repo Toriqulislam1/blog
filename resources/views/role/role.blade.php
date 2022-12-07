@@ -37,7 +37,7 @@
                     <label for="name">Role name</label>
                     <input type="text"  name="role_name"class="form-control mb-3" placeholder="role name">
                          </div>
-                         @foreach ($permision as $permision)
+                         @foreach ($permi as $permision)
 
 
                             <div class="form-group">
@@ -70,14 +70,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($role as $role )
+                                @foreach ($permi as $permi )
 
 
                                 <tr>
-                                    <td>{{$role->name  }}</td>
+                                    <td>{{$permi->name  }}</td>
                                     <td>
-                                        @foreach ($role->getAllPermissions() as $permission)
-                                        <span class="badge badge-info">{{ $permission->name }}</span>
+                                        @foreach ($permi->getAllPermissions() as $permi)
+                                        <span class="badge badge-info">{{ $permi->name }}</span>
                                         @endforeach
 
 
@@ -93,35 +93,42 @@
 
 
 
-                    <div class="card">
+                    {{-- <div class="card">
                        <div class="card-header">
-                        <h4> Role List</h4>
+                        <h4> Assign role</h4>
                        </div>
                        <div class="card-body">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>permission</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {{-- @foreach ($role as $role ) --}}
+                        <form action="">
+                            @csrf
+                            <div class="mt-3">
+                                <select name="user_id" class="form-control" id="">
+
+                                    <option value=""> select </option>
+                                    @foreach ($user as $user )
+                                    <option value="{{ $user->id }}"> {{ $user->name }} </option>
+                                    @endforeach
 
 
-                                <tr>
-                                    {{-- <td>{{$role->name  }}</td> --}}
-                                    <td>
-                                        {{-- @foreach ($role->getAllPermissions() as $permission)
-                                        <span class="badge badge-info">{{ $permission->name }}</span>
-                                        @endforeach --}}
+                                </select>
+
+                            </div>
+                            <div class="mt-3">
+                                <select name="role_id" class="form-control" id="">
+
+                                    <option value=""> select </option>
+                                    @foreach ($aa as $data )
+
+                                    <option value="{{ $data->id }}"> {{ $data->name }} </option>
+
+                                    @endforeach
 
 
-                                    </td>
+                                </select> --}}
+                                {{-- <button type="submit" class="btn btn-primary"> Add assgin</button> --}}
 
-                                </tr>
-                                {{-- @endforeach --}}
+                            {{-- </div> --}}
+                        </form>
+
                             </tbody>
 
                         </table>

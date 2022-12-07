@@ -1,13 +1,19 @@
-@
+
 @extends('layouts.deshboard')
 @section('contain')
 
-<div class="container-flud">
+<div class="container-fluid">
     <div class="row">
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">
                     <h4>catagory add</h4>
+                    @if(session('addcatagory'))
+
+                    <strong class="text-info">{{ session('addcatagory') }}</strong>
+
+
+                    @endif()
                 </div>
                 <div class="card-body">
                     <form action="{{ route('store') }}" method="POST" enctype="multipart/form-data">

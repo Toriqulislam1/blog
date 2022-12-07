@@ -678,6 +678,7 @@ License: You must have a valid license purchased only from above link or https:/
   <!-- custom js for this page -->
   <script src="{{ asset('/assets/js/dashboard.js') }}"></script>
   <script src="{{ asset('/assets/js/datepicker.js') }}"></script>
+  @yield('footer_script')
 	<!-- end custom js for this page -->
 </body>
 </html>

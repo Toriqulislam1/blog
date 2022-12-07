@@ -9,10 +9,14 @@
                <div class="card-header">
                 <h4> Catagory List</h4>
                </div>
+               <div>
+                <button type="submit" class="btn btn-danger">delete check</button>
+               </div>
                <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
+                            <th><input   type="checkbox" name="" id="checkAll">Check All</th>
                             <th>Name</th>
                             <th>Image</th>
                             <th>Action</th>
@@ -23,6 +27,8 @@
 
 
                         <tr>
+
+                            <td> <input type="checkbox" name="check[]" id="" value="{{ $catagory->id }}"></td>
                             <td>{{$catagory->catagory_name  }}</td>
                             <td><img src="{{ asset('uploads/catagory/') }}/{{$catagory->catagory_image}}" alt=""></td>
                             <td> <a  class="btn btn-success" href="{{ route('edit_catagory',$catagory->id) }}">Edit</a> </td>
@@ -39,7 +45,20 @@
 </div>
 
 
+@section('footer_script')
+<script>
 
+
+
+$("#checkAll").click(function(){
+    $('input:checkbox').not(this).prop('checked', this.checked);
+});
+
+
+
+
+</script>
+@endsection()
 
 
 

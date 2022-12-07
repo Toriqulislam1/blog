@@ -25,6 +25,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/user_list',[HomeController::class,"user_list"]);
+Route::get('/user/delete/{user_delete}',[HomeController::class,"user_delete"])->name('user_delete');
+Route::post('/user/check/delete',[HomeController::class,"check_delete"])->name('check_delete');
 
 Route::get('edit/profile',[HomeController::class,"edit_profile"])->name('edit.profile');
 
@@ -52,4 +54,5 @@ Route::get('tag/delete {id}',[HomeController::class,"delete_tag"])->name('delete
 //role
 Route::get('/role',[HomeController::class,"role"])->name('role');
 Route::post('/add/permission',[HomeController::class,"permission"])->name('permission');
+
 Route::post('/add/role',[HomeController::class,"role_store"])->name('role_store');
