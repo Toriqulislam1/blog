@@ -43,6 +43,8 @@ Route::get('catagory/show',[HomeController::class,"show_catagory"])->name('show_
 Route::post('catagory/store',[HomeController::class,"catagory_store"])->name('store');
 //delete catagory
 Route::get('delete_catagory/{id}',[HomeController::class,"delete_catagory"])->name('delete_catagory');
+//multiple delete catagory
+Route::post('delete/catagory',[HomeController::class, "multi_del_cat"])->name('multi_del_cat');
 //catagory edit
 Route::get('edit_catagory/{id}',[HomeController::class,"edit_catagory"])->name('edit_catagory');
 //update catagory
@@ -56,3 +58,7 @@ Route::get('/role',[HomeController::class,"role"])->name('role');
 Route::post('/add/permission',[HomeController::class,"permission"])->name('permission');
 
 Route::post('/add/role',[HomeController::class,"role_store"])->name('role_store');
+Route::post('/assign/role',[HomeController::class,"role_assign"])->name('role_assign');
+
+Route::get('/remoce/role/{id}',[HomeController::class,"remove"])->name('projects.show');
+

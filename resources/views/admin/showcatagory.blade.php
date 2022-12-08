@@ -4,7 +4,9 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-6 m-auto">
+        <div class="col-lg-8 m-auto">
+            <form action="{{ route('multi_del_cat') }}" method="post">
+                @csrf
             <div class="card">
                <div class="card-header">
                 <h4> Catagory List</h4>
@@ -31,8 +33,11 @@
                             <td> <input type="checkbox" name="check[]" id="" value="{{ $catagory->id }}"></td>
                             <td>{{$catagory->catagory_name  }}</td>
                             <td><img src="{{ asset('uploads/catagory/') }}/{{$catagory->catagory_image}}" alt=""></td>
-                            <td> <a  class="btn btn-success" href="{{ route('edit_catagory',$catagory->id) }}">Edit</a> </td>
-                            <td> <a href="{{ route('delete_catagory',$catagory->id) }}" class="btn btn-danger">delete</a> </td>
+                            <td>
+                                <a  class="btn btn-success" href="{{ route('edit_catagory',$catagory->id) }}">Edit</a>
+                                <a href="{{ route('delete_catagory',$catagory->id) }}" class="btn btn-danger">delete</a>
+                            </td>
+
                         </tr>
                         @endforeach
                     </tbody>
@@ -40,6 +45,7 @@
                 </table>
                </div>
             </div>
+                </form>
         </div>
     </div>
 </div>

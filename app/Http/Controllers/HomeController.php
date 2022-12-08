@@ -7,6 +7,7 @@ use App\Models\tag;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Auth;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 use Spatie\Permission\Models\Permission;
@@ -125,9 +126,7 @@ public function update_profile(Request $request){
 //catagory
 public function addcatagory(){
 
- $catagory = catagory::all();
-
-
+    $catagory = catagory::all();
 
     return view('admin.catagory',['catagory'=>$catagory]);
  }
@@ -168,6 +167,15 @@ public function addcatagory(){
    function delete_catagory($id){
     catagory::find($id)->delete();
     return back();
+
+   }
+   //multiple catagory
+   function multi_del_cat(Request $request){
+    foreach ($request->check as $cat){
+        catagory::find($cat)->delete();
+        return back();
+    }
+
 
    }
    //edit catagory
@@ -235,6 +243,7 @@ public function addcatagory(){
                    'permi'=>$permi,
                    'aa'=>$role,
                    'user'=>$user,
+                   'users'=>$user,
                   ]);
                 }
 
@@ -252,9 +261,33 @@ public function addcatagory(){
                     return back();
 
                 }
+                //assgin role
+            function role_assign(Request $request){
+                $user = user::find($request->user_id);
+                $user->assignRole($request->role_id);
 
+                return back();
 
 }
+
+
+
+
+function remove($remove_id){
+
+
+    $user =User::find($remove_id);
+
+
+    $user->syncPermissions([]);
+    $user->syncRoles([]);
+    return back();
+}
+
+}
+
+
+
 
 
 

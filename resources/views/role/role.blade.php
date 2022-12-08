@@ -93,57 +93,141 @@
 
 
 
-                    {{-- <div class="card">
-                       <div class="card-header">
-                        <h4> Assign role</h4>
-                       </div>
-                       <div class="card-body">
-                        <form action="">
-                            @csrf
-                            <div class="mt-3">
-                                <select name="user_id" class="form-control" id="">
+                    <div class="card">
+                        <div class="card-header">
+                         <h4> Assign role</h4>
+                        </div>
+                        <div class="card-body">
+                         <form action="{{ route('role_assign') }}" method="post">
+                             @csrf
+                             <div class="mt-3">
+                                 <select name="user_id" class="form-control user" id="">
 
-                                    <option value=""> select </option>
-                                    @foreach ($user as $user )
-                                    <option value="{{ $user->id }}"> {{ $user->name }} </option>
-                                    @endforeach
-
-
-                                </select>
-
-                            </div>
-                            <div class="mt-3">
-                                <select name="role_id" class="form-control" id="">
-
-                                    <option value=""> select </option>
-                                    @foreach ($aa as $data )
-
-                                    <option value="{{ $data->id }}"> {{ $data->name }} </option>
-
-                                    @endforeach
+                                     <option value=""> select </option>
+                                     @foreach ($user as $user )
+                                     <option value="{{ $user->id }}"> {{ $user->name }} </option>
+                                     @endforeach
 
 
-                                </select> --}}
-                                {{-- <button type="submit" class="btn btn-primary"> Add assgin</button> --}}
+                                 </select>
 
-                            {{-- </div> --}}
-                        </form>
+                             </div>
 
-                            </tbody>
+                             <div class="mt-3">
+                                 <select name="role_id" class="form-control" id="">
 
-                        </table>
-                       </div>
-                    </div>
+                                     <option value=""> select </option>
+                                     @foreach ($aa as $data )
+
+                                     <option value="{{ $data->id }}"> {{ $data->name }} </option>
+
+                                     @endforeach
+
+
+                                 </select>
+                                 <button type="submit" class="btn btn-primary"> Add assgin</button>
+
+                           </div>
+                         </form>
+
+                             </tbody>
+
+                         </table>
+                        </div>
+                     </div>
+
+
+
+
                 </div>
             </div>
 
         </div>
 
 
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>show user list</h4>
+                        </div>
+                        <div class="card-body">
+                            <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>role</th>
+                                <th>Permission</th>
+                                <th>Action</th>
+                            </tr>
+                          <tbody>
+                            @foreach ($users as $show_user )
+
+
+                            <tr>
+                                <td>{{$show_user->name }}</td>
+
+
+                                <td>
+                                    @forelse ($show_user->getRoleNames() as $role )
+                                    <span class="badge badge-success">{{ $role }}</span>
+                                    @empty
+                                    not assign
+                                @endforelse
+                                <td>
+
+
+                                    @forelse ($show_user->getAllPermissions() as $permision )
+                                    <span class="badge badge-success">{{ $permision->name }}</span>
+
+
+                                    @empty
+                                    not assign
+
+                                @endforelse
+
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger" href="{{ route('projects.show', $show_user->id) }}"> Remove</a>
+
+
+                                </td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
 @endsection
 
 
+@section('footer_script')
 
+<script>
+
+$(document).ready(function() {
+    $('.user').select2();
+});
+</script>
+
+
+
+
+
+
+
+
+
+@endsection
 
 
 

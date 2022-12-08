@@ -17,6 +17,7 @@ License: You must have a valid license purchased only from above link or https:/
 	<!-- core:css -->
 	<link rel="stylesheet" href="{{ asset('assets/vendors/core/core.css') }}">
 	<!-- endinject -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <!-- plugin css for this page -->
   <link rel="stylesheet" href="{{ asset('/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.css') }}">
 	<!-- end plugin css for this page -->
@@ -670,6 +671,7 @@ License: You must have a valid license purchased only from above link or https:/
   <script src="{{ asset('/assets/vendors/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
   <script src="{{ asset('/assets/vendors/apexcharts/apexcharts.min.js') }}"></script>
   <script src="{{ asset('/assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	<!-- end plugin js for this page -->
 	<!-- inject:js -->
 	<script src="{{ asset('/assets/vendors/feather-icons/feather.min.js') }}"></script>
